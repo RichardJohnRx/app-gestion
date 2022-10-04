@@ -1,1 +1,64 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    background: rgb(8, 32, 50);
+    background: linear-gradient(90deg, rgba(8, 32, 50, 1) 0%, rgba(0, 0, 0, 1) 100%);
+}
+
+.separador {
+    height: 5px;
+    background: rgb(255, 0, 105);
+    background: linear-gradient(169deg, rgba(255, 0, 105, 1) 0%, rgba(255, 216, 0, 1) 100%);
+}
+
+.btn-amarillo {
+    background-color: rgb(255, 247, 0) !important;
+    color: black !important;
+    border-color: rgb(255, 238, 0) !important;
+}
+
+.btn-amarillo:hover {
+    background-color: rgb(255, 234, 0) !important;
+    color: rgb(0, 0, 0) !important;
+    border-color: rgb(255, 183, 0) !important;
+    transition: .3s;
+}
+
+.btn-fucsia {
+    background-color: rgb(255, 0, 119) !important;
+    color: white !important;
+    border-color: rgb(255, 0, 89) !important;
+}
+
+.btn-fucsia:hover {
+    background-color: rgb(255, 0, 85) !important;
+    color: white !important;
+    border-color: rgb(255, 0, 89) !important;
+    transition: .3s;
+}
+
+body::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+body::-webkit-scrollbar:vertical {
+    width: 10px;
+}
+
+body::-webkit-scrollbar-button:increment,
+body::-webkit-scrollbar-button {
+    display: none;
+}
+
+body::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #334756;
+    border-radius: 20px;
+    border: 2px solid #01032d;
+}
+
+body::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #010203;
+}

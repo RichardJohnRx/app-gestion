@@ -6,16 +6,23 @@ import { MainComponent } from './main/main.component';
 import { GamescreenComponent } from './gamescreen/gamescreen.component';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
+import { GamesModule } from './games/games.module';
+import { environment } from 'src/environments/environment';
+import {AngularFireModule} from "@angular/fire/compat";
+import {AngularFireDatabaseModule} from "@angular/fire/compat/database";
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    GamescreenComponent
+    GamescreenComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    GamesModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

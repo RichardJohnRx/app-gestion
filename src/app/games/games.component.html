@@ -1,0 +1,20 @@
+<div class="container-fluid text-light">
+  <h3 class="ms-5 mt-4 mb-4">{{gameTitle}}</h3>
+</div>
+<div class="row container-fluid">
+  <div class="col-md-8 ms-5 bg-danger pantallajuego">
+      <router-outlet></router-outlet>
+  </div>
+  <div class="col-md-3 ms-5 bg-info">
+
+  </div>
+</div>
+<div class="row container-fluid">
+  <div class="col-md-8 ms-5 mt-2 mb-3 contenedorinfo">
+      <h4 class="m-5">Información del juego</h4>
+      <hr class="ms-4 me-4">
+      <div class="m-5 textocontenedor">
+        {{gameInfo}}
+      </div>
+  </div>
+</div>

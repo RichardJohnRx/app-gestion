@@ -1,0 +1,110 @@
+<!-- Adivina el número -->
+
+<!-- 3 Niveles de dificultad -->
+
+
+<!-- 1. Nivel fácil: 1-5 -->
+
+<!-- 2. Nivel medio: 1-10 -->
+
+<!-- 3. Nivel difícil: 1-20 -->
+<div class="row justify-content-end" *ngIf="dIsSelected  && !loading">
+  <div class="col-3">
+    <h2 class="text-center">Puntuación: <span id="puntuacion">{{puntuacion}}</span></h2>
+  </div>
+</div>
+<div class="container fContainer">
+  <!-- Puntuación -->
+
+
+  <div class="row justify-content-center " *ngIf="!dIsSelected && !loading">
+
+    <div class="col-md-12 fView">
+
+      <h1>Adivina el número</h1>
+
+      <p>Elige el nivel de dificultad</p>
+
+      <div class="btn-group" role="group" aria-label="Basic example">
+
+        <button type="button" class="btn btn-secondary" id="facil" (click)="setDifficulty('facil')">Fácil</button>
+
+        <button type="button" class="btn btn-secondary" id="medio" (click)="setDifficulty('medio')">Medio</button>
+
+        <button type="button" class="btn btn-secondary" id="dificil" (click)="setDifficulty('dificil')">Difícil</button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="row loading" *ngIf="loading && !dIsSelected">
+
+    <div class="spinner-border text-primary" role="status">
+
+      <span class="sr-only">Loading...</span>
+
+    </div>
+
+  </div>
+
+  <div class="row easyMode" *ngIf="dIsSelected  && !loading">
+
+    <div class="col-md-12">
+
+      <div class="row justify-content-center">
+
+        <div class="col-md-12">
+
+          <h1>Adivina el número</h1>
+
+          <h3>Dificultad: {{dSelected}}</h3>
+
+          <p>Elige un número del 1 al {{numbers.length}}</p>
+
+          <div class="btn-group" role="group" aria-label="Basic example">
+
+            <button type="button" class="btn btn-primary" id="1" *ngFor="let n of numbers"
+                    [disabled]="n.disabled"
+            (click)="checkNumber(n)"
+            >{{n.number}}</button>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="row justify-content-center">
+
+        <div class="col-md-12">
+
+          <p>Intentos: {{tries}}</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Return button -->
+
+    <div class="col-md-12">
+
+      <div class="row justify-content-center">
+
+        <div class="col-md-12">
+
+          <button type="button" class="btn btn-secondary" id="return" (click)="return()">Volver</button>
+
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+
+

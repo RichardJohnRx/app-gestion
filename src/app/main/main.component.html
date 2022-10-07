@@ -1,7 +1,7 @@
 <div class="container-fluid">
-    <div *ngFor="let game of games">
-        <a href="/game" class="card">
-            <img  class="imagecard" src="{{game.img}}">
-        </a>
-    </div>
+  <div *ngFor="let game of games">
+    <a href="#" class="card" [routerLink]="['/'+ game.path]">
+      <img class="imagecard" src="{{game.img}}">
+    </a>
+  </div>
 </div>

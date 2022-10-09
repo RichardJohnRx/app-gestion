@@ -8,8 +8,11 @@
 <!-- 2. Nivel medio: 1-10 -->
 
 <!-- 3. Nivel difícil: 1-20 -->
-<div class="row justify-content-end" *ngIf="dIsSelected  && !loading">
+<div class="row justify-content-between" *ngIf="dIsSelected  && !loading">
   <div class="col-3">
+    <h2 class="text-center">Intentos: <span id="intentos">{{tries}}</span></h2>
+  </div>
+  <div class="col-4">
     <h2 class="text-center">Puntuación: <span id="puntuacion">{{puntuacion}}</span></h2>
   </div>
 </div>
@@ -65,24 +68,27 @@
 
           <div class="btn-group" role="group" aria-label="Basic example">
 
-            <button type="button" class="btn btn-primary" id="1" *ngFor="let n of numbers"
-                    [disabled]="n.disabled"
-            (click)="checkNumber(n)"
-            >{{n.number}}</button>
+            <input type="number" class="form-control" id="iptNumber">
 
 
+            <br>
           </div>
 
         </div>
 
       </div>
-
       <div class="row justify-content-center">
 
         <div class="col-md-12">
+        </div>
 
-          <p>Intentos: {{tries}}</p>
+      </div>
+      <div class="row justify-content-center" *ngIf="hint != ''">
 
+        <div class="col-md-12">
+          <div>
+            <span>{{hint}}</span>
+          </div>
         </div>
 
       </div>
@@ -91,13 +97,15 @@
 
     <!-- Return button -->
 
-    <div class="col-md-12">
+    <div class="col-md-12 mt-2">
 
       <div class="row justify-content-center">
 
         <div class="col-md-12">
 
           <button type="button" class="btn btn-secondary" id="return" (click)="return()">Volver</button>
+          &ngsp;
+          <button class="btn btn-primary" (click)="checkNumber()">Adivinar</button>
 
         </div>
 

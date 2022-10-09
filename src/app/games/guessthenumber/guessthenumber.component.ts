@@ -14,6 +14,7 @@ export class GuessthenumberComponent implements OnInit {
   numbers: any[] = []
   tries: number = 0;
   puntuacion: number = 0;
+  hint = ''
 
 
   constructor(private _gServ: GuessTheNumberService) {
@@ -42,12 +43,18 @@ export class GuessthenumberComponent implements OnInit {
     console.log("set number", n);
   }
 
-  checkNumber(n: any) {
+  checkNumber() {
+    let element = document.getElementById('iptNumber') as any
+    console.log(element, "Element")
+    let n = element.value
+console.log("n", n)
     this.tries++;
-    //checa si this.numbers aún tiene números disponibles
+
+    let correctNumber = this.numbers.filter(n => n.correct)[0].number
 
 
-    if (this.numbers[n.number - 1].correct) {
+
+    if (this.numbers[n - 1].correct) {
       Swal.fire({
         title: 'Correcto!',
         text: 'Has acertado el número',
@@ -55,6 +62,10 @@ export class GuessthenumberComponent implements OnInit {
         confirmButtonText: 'Continuar',
         allowOutsideClick: false
       }).then(() => {
+        this.hint = '';
+        let element = document.getElementById('iptNumber') as HTMLInputElement
+        // reset element
+        element.value = '';
         this.generateRandomNumbers(this.dSelected);
         switch (this.dSelected) {
           case "facil":
@@ -79,22 +90,47 @@ export class GuessthenumberComponent implements OnInit {
         confirmButtonText: 'Continuar',
         allowOutsideClick: false
       }).then(() => {
-        this.numbers[n.number - 1].disabled = true;
+        console.log(correctNumber,n)
+        this.hint = correctNumber < n ? 'El número debe ser menor que ' + n : 'El número debe ser mayor que ' + n;
+        console.log(this.hint, "hint")
         switch (this.dSelected) {
           case "facil":
             this.puntuacion = this.puntuacion > 0 ? this.puntuacion - 2 : 0;
             break;
           case "medio":
+            this.tries == 15 ? Swal.fire({
+              title: 'Agotaste tus intentos',
+              text: 'Más suerte la próxima',
+              icon: 'error',
+              allowOutsideClick: false,
+              confirmButtonText: "Intentar de nuevo"
+              }).then(_ => {
+              this.hint = '';
+              let element = document.getElementById('iptNumber') as HTMLInputElement
+              // reset element
+              element.value = '';
+                this.generateRandomNumbers(this.dSelected);}) : null
             this.puntuacion = this.puntuacion > 0 ? this.puntuacion - 4 : 0;
             break;
           case "dificil":
+            this.tries == 5 ? Swal.fire({
+              title: 'Agotaste tus intentos',
+              text: 'Más suerte la próxima',
+              icon: 'error',
+              allowOutsideClick: false,
+              confirmButtonText: "Intentar de nuevo"
+            }).then(_ => {
+              this.hint = '';
+              let element = document.getElementById('iptNumber') as HTMLInputElement
+              // reset element
+              element.value = '';
+              this.generateRandomNumbers(this.dSelected);}) : null
             this.puntuacion = this.puntuacion > 0 ? this.puntuacion - 6 : 0;
             break;
         }
       }).then(() => {
         let availableNumbers = this.numbers.filter((number: any) => number.disabled == false);
         console.log(availableNumbers);
-
       })
     }
 
@@ -102,53 +138,24 @@ export class GuessthenumberComponent implements OnInit {
 
 
   generateRandomNumbers(mode: string) {
-    this.tries = 0;
-    switch (mode) {
-      case "facil":
-        return this.generateRandomNumbersFacil();
-      case "medio":
-        return this.generateRandomNumbersMedio();
-      case "dificil":
-        return this.generateRandomNumbersDificil();
-      default:
-        return this.generateRandomNumbersFacil();
-    }
-
+    return this.generateRandomNumber();
   }
 
-  generateRandomNumbersFacil() {
-    this.numbers = [];
-    for (let i = 1; i <= 5; i++) {
+  generateRandomNumber() {
+    this.numbers = []
+    this.tries = 0;
+
+
+    for (let i = 1; i <= 1000; i++) {
       this.numbers.push({number: i, correct: false, disabled: false});
     }
-    let number = Math.floor(Math.random() * 4) + 1;
+    let number = Math.floor(Math.random() * 999) + 1;
     console.log(number);
     this.numbers[number].correct = true;
     console.log(this.numbers);
     return this.numbers;
   }
 
-  generateRandomNumbersMedio() {
-    this.numbers = [];
-    for (let i = 1; i <= 10; i++) {
-      this.numbers.push({number: i, correct: false, disabled: false});
-    }
-    let number = Math.floor(Math.random() * 9) + 1;
-    this.numbers[number].correct = true;
-    console.log(this.numbers);
-    return this.numbers;
-  }
-
-  generateRandomNumbersDificil() {
-    this.numbers = [];
-    for (let i = 1; i <= 20; i++) {
-      this.numbers.push({number: i, correct: false, disabled: false});
-    }
-    let number = Math.floor(Math.random() * 19) + 1;
-    this.numbers[number].correct = true;
-    console.log(this.numbers);
-    return this.numbers;
-  }
 
 
   return() {

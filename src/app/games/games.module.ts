@@ -5,11 +5,13 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from '../app-routing.module';
 import { GamesComponent } from './games.component';
 import { GuessthenumberComponent } from './guessthenumber/guessthenumber.component';
+import { SudokuComponent } from './sudoku/sudoku.component';
 
 @NgModule({
   declarations: [
     GuessthenumberComponent,
     GamesComponent,
+    SudokuComponent,
   ],
   imports: [
     BrowserModule,

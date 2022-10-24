@@ -1,0 +1,165 @@
+<div class="row m-2 game" *ngIf="juegofacil">
+    <div class="col-md-8 sudokugrid">
+        <h2>Nivel Fácil</h2>
+        <table class="table table-bordered text-center tablesudoku">
+            <tbody *ngFor="let i of [].constructor(3); let j = index;">
+                <tr class="border-top border-3">
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                </tr>
+                <tr>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                </tr>
+                <tr>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                </tr>
+            </tbody>
+            <br>
+        </table>
+    </div>
+    <div class="col-md-4">
+        <div class="text-end mt-2">
+            Temporizador: 00:00
+        </div>
+        <div class="text-end btnsalida">
+            <button type="button" class="btn btn-secondary" (click)="cambiarPantalla('menu')">Regresar</button>
+            <button type="button" class="btn btn-primary ms-2">Volver a empezar</button>
+        </div>
+    </div>
+</div>
+<div class="row m-2 game" *ngIf="juegointermedio">
+    <div class="col-md-8 sudokugrid">
+        <h2>Nivel Intermedio</h2>
+        <table class="table table-bordered text-center tablesudoku">
+            <tbody *ngFor="let i of [].constructor(3); let j = index;">
+                <tr class="border-top border-3">
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                </tr>
+                <tr>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                </tr>
+                <tr>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                </tr>
+            </tbody>
+            <br>
+        </table>
+    </div>
+    <div class="col-md-4">
+        <div class="text-end mt-2">
+            Temporizador: 00:00
+        </div>
+        <div class="text-end btnsalida">
+            <button type="button" class="btn btn-secondary" (click)="cambiarPantalla('menu')">Regresar</button>
+            <button type="button" class="btn btn-primary ms-2">Volver a empezar</button>
+        </div>
+    </div>
+</div>
+<div class="row m-2 game" *ngIf="juegoavanzado">
+    <div class="col-md-8 sudokugrid">
+        <h2>Nivel Avanzado</h2>
+        <table class="table table-bordered text-center tablesudoku">
+            <tbody *ngFor="let i of [].constructor(3); let j = index;">
+                <tr class="border-top border-3">
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                </tr>
+                <tr>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                </tr>
+                <tr>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                    <td><input/></td>
+                </tr>
+            </tbody>
+            <br>
+        </table>
+    </div>
+    <div class="col-md-4">
+        <div class="text-end mt-2">
+            Temporizador: 00:00
+        </div>
+        <div class="text-end btnsalida">
+            <button type="button" class="btn btn-secondary" (click)="cambiarPantalla('menu')">Regresar</button>
+            <button type="button" class="btn btn-primary ms-2">Volver a empezar</button>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-2 btns" *ngIf="pantallamenu">
+    <div class="container-fluid">
+        <div class="d-grid gap-2">
+            <button class="btn btn-primary" (click)="cambiarPantalla('facil')" type="button">Fácil</button>
+            <button class="btn btn-warning" (click)="cambiarPantalla('intermedio')" type="button">Intermedio</button>
+            <button class="btn btn-danger" (click)="cambiarPantalla('avanzado')" type="button">Avanzado</button>
+        </div>
+    </div>
+</div>

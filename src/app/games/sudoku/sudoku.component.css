@@ -1,0 +1,39 @@
+.btns{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+    height: 630px;
+}
+.tablesudoku{
+    width: 500px;
+    margin-left: 8%;
+    margin-top: 15%;
+}
+.tablesudoku tr{
+    height: 50px;
+    
+}
+.tablesudoku tr td{
+    padding: 0px !important;
+    position: relative;
+}
+.tablesudoku tr td input{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: 100%;
+    outline: none;
+    border: 0px;
+    text-align: center;
+}
+.sudokugrid{
+    height: 630px;
+}
+.btnsalida{
+    position: absolute;
+    bottom: 45px;
+}

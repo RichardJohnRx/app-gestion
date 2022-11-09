@@ -1,12 +1,21 @@
-<div class="row m-2 game" *ngIf="juegofacil">
+<div class="row justify-content-around"  *ngIf="isJuegoSelected">
+    <div class="col-md-4"><h2>Nivel {{dificultad}}</h2></div>
+    
+    <div class="col-md-4">
+            Temporizador: <pre>{{clock|json}}</pre>
+    </div>
+</div>
+
+<div class="row" *ngIf="isJuegoSelected">
     <div class="col-md-8 sudokugrid">
-        <h2>Nivel Fácil</h2>
         <table class="table table-bordered text-center tablesudoku">
             <tbody>
-                <tr class="border-top border-3" *ngFor="let row of currentTablero.unsolved">
-                    <td *ngFor="let cel of row.split('')">
-                        <input type="text" value="{{cel}}"
+                <tr class="border-top border-3" *ngFor="let row of currentTablero.unsolved; let i = index">
+                    <td *ngFor="let cel of row.split(''); let j = index">
+                        <input type="text" value="{{cel != '-' ? cel: null}}"
                         [disabled]="cel !== '-'"
+                        (input)="setValue(i,j,$event)"
+                        
                         oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />
                     </td>
                 </tr>
@@ -14,17 +23,22 @@
             <br>
         </table>
     </div>
-    <div class="col-md-4">
-        <div class="text-end mt-2">
-            Temporizador: <pre>{{clock|json}}</pre>
-        </div>
-        <div class="text-end btnsalida">
+
+    <div class="col-md-2">
+        <div class="row">
             <button type="button" class="btn btn-secondary" (click)="cambiarPantalla('menu')">Regresar</button>
-            <button type="button" class="btn btn-primary ms-2">Volver a empezar</button>
         </div>
+        <div class="row">
+            <button type="button" class="btn btn-primary ms-2" (click)="printValue()">Volver a empezar</button>
+
+        </div>
+
     </div>
+
 </div>
-<div class="container-fluid mt-2 btns" *ngIf="pantallamenu">
+
+
+<div class="container-fluid mt-2 btns" *ngIf="pantallamenu && !isJuegoSelected">
     <div class="container-fluid">
         <div class="d-grid gap-2">
             <button class="btn btn-primary" (click)="cambiarPantalla('facil')" type="button">Fácil</button>
@@ -33,3 +47,4 @@
         </div>
     </div>
 </div>
+

@@ -14,7 +14,7 @@ export class GuessTheNumberService {
     return this._afs.collection('games').doc('guessthenumber').get().pipe(
       map((doc) => {
         return doc.data();
-      })
+      }) 
     )
 
   }

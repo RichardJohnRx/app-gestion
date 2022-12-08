@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 @Injectable({
   providedIn: 'root',
@@ -289,7 +290,7 @@ export class SudokuService {
 
   ]
 
-  constructor() { }
+  constructor(private _afs: AngularFireDatabase) { }
 
   getTablero(dificultad: string) {
     switch (dificultad) {
@@ -316,5 +317,21 @@ export class SudokuService {
       default:
         return null;
     }
+  }
+
+  getTableros() {
+    return this._afs.list('tableros').valueChanges();
+  }
+  saveTablero(tablero: any) {
+    return this._afs.list('tableros').push(tablero);
+  }
+  dropTablero() {
+    return this._afs.list('tableros').remove();
+  }
+  getWinners() {
+    return this._afs.list('winners').valueChanges();
+  }
+  saveWinner(winner: any) {
+    return this._afs.list('winners').push(winner);
   }
 }

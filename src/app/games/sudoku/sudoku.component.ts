@@ -89,7 +89,7 @@ export class SudokuComponent implements OnInit {
       for (let j = 0; j < tablero!.solved[i].length; j++) {
         this.tableroResuelto[i][j] = tablero!.solved[i][j];
       }
-      
+
     }
 
     for (let i = 0; i < tablero!.unsolved.length; i++) {
@@ -146,15 +146,37 @@ export class SudokuComponent implements OnInit {
 
     return true
   }
+  limpiarTablero(){
+    this.tableroView = []
+    this.tableroResuelto = []
+    this.currentTablero = {
+      id: 0,
+      solved: [],
+      unsolved: []
+    };
+    this.segundos = 0
+    this.minutos = 0
+  }
 
 
   isWinner(){
 
     if(this.compareTableros()){
-      
+
       alert("Ganaste")
+      this.limpiarTablero()
+      this.saveWinner()
     } else {
-      console.log("No ganaste, hubo un cambio perra")
+      console.log("No ganaste")
     }
+  }
+
+  saveWinner(){
+    let winner = {
+      tiempo: this.clock,
+      dificultad: this.dificultad
+    }
+
+    this._sudokuService.saveWinner(winner)
   }
 }

@@ -1,0 +1,9 @@
+<!-- tableo de conecta 4-->
+<table class="table table-bordered">
+    <tr *ngFor="let row of board; let i = index">
+        <td *ngFor="let col of row; let j = index" (click)="click(i, j)">
+            <div class="circle" [ngClass]="{red: col
+            == 1, yellow: col == 2}"></div>
+        </td>
+    </tr>
+</table>
